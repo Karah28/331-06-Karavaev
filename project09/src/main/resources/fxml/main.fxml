@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="module_02_karavaev.src.controllers.MainController"
+      prefHeight="600.0" prefWidth="800.0"
+      spacing="10">
+    
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <MenuBar>
+        <Menu text="Файл">
+            <MenuItem text="Импорт из Excel" onAction="#handleImportExcel"/>
+            <MenuItem text="Экспорт в Excel" onAction="#handleExportExcel"/>
+            <SeparatorMenuItem/>
+            <MenuItem text="Выход" onAction="#handleExit"/>
+        </Menu>
+        <Menu text="Партнеры">
+            <MenuItem text="Добавить партнера" onAction="#handleAddPartner"/>
+            <MenuItem text="Управление категориями" onAction="#handleManageCategories"/>
+        </Menu>
+        <Menu text="Отчеты">
+            <MenuItem text="Статистика продаж" onAction="#handleSalesStatistics"/>
+            <MenuItem text="Активность партнеров" onAction="#handlePartnerActivity"/>
+        </Menu>
+        <Menu text="Помощь">
+            <MenuItem text="О программе" onAction="#handleAbout"/>
+        </Menu>
+    </MenuBar>
+
+    <HBox spacing="10">
+        <TextField fx:id="searchField" promptText="Поиск партнера..." HBox.hgrow="ALWAYS"/>
+        <ComboBox fx:id="categoryFilter" promptText="Категория"/>
+        <ComboBox fx:id="statusFilter" promptText="Статус"/>
+        <Button text="Поиск" onAction="#handleSearch"/>
+    </HBox>
+
+    <TableView fx:id="partnersTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID"/>
+            <TableColumn fx:id="nameColumn" text="Название"/>
+            <TableColumn fx:id="categoryColumn" text="Категория"/>
+            <TableColumn fx:id="innColumn" text="ИНН"/>
+            <TableColumn fx:id="directorColumn" text="Директор"/>
+            <TableColumn fx:id="phoneColumn" text="Телефон"/>
+            <TableColumn fx:id="statusColumn" text="Статус"/>
+            <TableColumn fx:id="ratingColumn" text="Рейтинг"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Добавить" onAction="#handleAddPartner"/>
+        <Button text="Редактировать" onAction="#handleEditPartner"/>
+        <Button text="Удалить" onAction="#handleDeletePartner"/>
+        <Button text="Обновить" onAction="#handleRefresh"/>
+    </HBox>
+
+    <TabPane>
+        <Tab text="Контакты">
+            <VBox spacing="5">
+                <TableView fx:id="contactsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="contactNameColumn" text="ФИО"/>
+                        <TableColumn fx:id="contactPositionColumn" text="Должность"/>
+                        <TableColumn fx:id="contactPhoneColumn" text="Телефон"/>
+                        <TableColumn fx:id="contactEmailColumn" text="Email"/>
+                        <TableColumn fx:id="contactPrimaryColumn" text="Основной"/>
+                    </columns>
+                </TableView>
+                <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <Button text="Добавить контакт" onAction="#handleAddContact"/>
+                    <Button text="Редактировать контакт" onAction="#handleEditContact"/>
+                    <Button text="Удалить контакт" onAction="#handleDeleteContact"/>
+                </HBox>
+            </VBox>
+        </Tab>
+        <Tab text="История продаж">
+            <TableView fx:id="salesTable">
+                <columns>
+                    <TableColumn fx:id="saleDateColumn" text="Дата"/>
+                    <TableColumn fx:id="productColumn" text="Продукт"/>
+                    <TableColumn fx:id="quantityColumn" text="Количество"/>
+                    <TableColumn fx:id="priceColumn" text="Цена"/>
+                    <TableColumn fx:id="discountColumn" text="Скидка"/>
+                    <TableColumn fx:id="totalColumn" text="Итого"/>
+                </columns>
+            </TableView>
+        </Tab>
+        <Tab text="Заметки">
+            <VBox spacing="5">
+                <TextArea fx:id="notesArea" VBox.vgrow="ALWAYS"/>
+                <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <Button text="Сохранить заметки" onAction="#handleSaveNotes"/>
+                </HBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+
+    <StatusBar>
+        <text>Готово</text>
+    </StatusBar>
+
+</VBox> 
